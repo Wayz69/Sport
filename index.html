@@ -25,6 +25,7 @@
   --velo: #7ab8a0;
   --repos: #2a2a2c;
   --race: #e8c547;
+  --mobilite: #b0a090;
 }
 
 body {
@@ -461,6 +462,7 @@ select option { background: var(--surface2); }
   <div class="legend-item"><div class="legend-dot" style="background:var(--muscu)"></div>Muscu</div>
   <div class="legend-item"><div class="legend-dot" style="background:var(--cardio)"></div>Cardio</div>
   <div class="legend-item"><div class="legend-dot" style="background:var(--velo)"></div>Vélo</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#b0a090"></div>Mobilité</div>
   <div class="legend-item"><div class="legend-dot" style="background:var(--muted)"></div>Autre</div>
 </div>
 
@@ -492,6 +494,7 @@ select option { background: var(--surface2); }
           <option value="cardio">Cardio</option>
           <option value="velo">Vélo</option>
           <option value="repos">Repos</option>
+          <option value="mobilite">Mobilité</option>
           <option value="other">Autre</option>
         </select>
       </div>
@@ -534,12 +537,13 @@ const TYPE_COLORS = {
   velo: 'var(--velo)',
   repos: 'var(--muted)',
   other: 'var(--muted2)',
+  mobilite: '#b0a090',
   race: 'var(--race)',
 };
 
 const TYPE_LABELS = {
   run: 'Course', swim: 'Natation', muscu: 'Muscu',
-  cardio: 'Cardio', velo: 'Vélo', repos: 'Repos', other: 'Autre', race: 'Compétition'
+  cardio: 'Cardio', velo: 'Vélo', repos: 'Repos', mobilite: 'Mobilité', other: 'Autre', race: 'Compétition'
 };
 
 const DAY_NAMES = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
@@ -686,6 +690,7 @@ function renderStats(sessions) {
     if (s.type === 'swim') { swimMin += min; if (vol.includes('km')) swimKm += km; else if (vol.includes('m')) swimKm += km / 1000; }
     if (s.type === 'velo') veloMin += min;
     if (s.type === 'muscu') muscu++;
+    if (s.type === 'mobilite') totalMin += min;
     if (s.type === 'cardio') cardioMin += min;
   }));
 
@@ -765,12 +770,14 @@ function preloadWeek() {
     // Lundi
     [
       { type:'muscu', title:'Force + bas du corps léger', detail:'Bench press · Rowing barre · OHP 4×6\nHip thrust 3×12 · Leg press 3×12', duration:'1h00', volume:'' },
-      { type:'swim', title:'Endurance force', detail:'400m échauff + 4×(200m pull + 200m plaques) départ 4\' + 200m cool', duration:'45min', volume:'~2000m' }
+      { type:'swim', title:'Endurance force', detail:'400m échauff + 4×(200m pull + 200m plaques) départ 4\' + 200m cool', duration:'45min', volume:'~2000m' },
+      { type:'mobilite', title:'Mobilité hanches & tibias', detail:'Rotations hanches · Leg swings · Mobilité cheville · Étirements tibias doux', duration:'15min', volume:'' }
     ],
     // Mardi
     [
       { type:'run', title:'Run Spé Mat\'', detail:'5\' marche + 8×(4\' RPE 4-5 / 30" marche) + 5\' marche', duration:'45min', volume:'~7.5km' },
-      { type:'cardio', title:'SkiErg intervalles', detail:'5×4min allure soutenue / 2min récup', duration:'40min', volume:'' }
+      { type:'cardio', title:'SkiErg intervalles', detail:'5×4min allure soutenue / 2min récup', duration:'40min', volume:'' },
+      { type:'mobilite', title:'Mobilité épaules', detail:'Rotations épaules · Thoracique · Étirements pectoraux', duration:'20min', volume:'' }
     ],
     // Mercredi
     [
@@ -784,9 +791,13 @@ function preloadWeek() {
       { type:'cardio', title:'Rameur', detail:'3×2000m / récup 3min', duration:'45min', volume:'' }
     ],
     // Vendredi — Puy du Fou
-    [],
-    // Samedi — Repos
-    [],
+    [
+      { type:'mobilite', title:'Mobilité full body', detail:'Yoga flow léger · Étirements globaux · Idéal après une journée de marche', duration:'20min', volume:'' }
+    ],
+    // Samedi — Repos complet
+    [
+      { type:'mobilite', title:'Activation pré-course', detail:'Rotations hanches · Leg swings · 5min footing léger · 4x accélérations progressives', duration:'20min', volume:'' }
+    ],
     // Dimanche — Race
     []
   ];
