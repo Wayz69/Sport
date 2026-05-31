@@ -763,7 +763,10 @@ function deleteSession(wk, day, si) {
 function preloadWeek() {
   const monday = getMonday(0);
   const wk = weekKey(monday);
-  if (store[wk] && store[wk].some(d => d.length > 0)) return;
+  // Force reload version 2
+  const version = 'v2';
+  if (store[wk] && store[wk].some(d => d.length > 0) && localStorage.getItem('mw_version') === version) return;
+  localStorage.setItem('mw_version', version);
 
   // Semaine 1-7 juin 2026
   const plan = [
