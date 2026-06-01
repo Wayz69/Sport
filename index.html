@@ -62,9 +62,10 @@ body {
 
 .stats-bar {
   display: flex;
-  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
   padding: 0 2rem;
   overflow-x: auto;
+  margin-top: 1rem;
 }
 
 .stat-item {
@@ -95,7 +96,8 @@ body {
   gap: 1.2rem;
   flex-wrap: wrap;
   padding: 0.8rem 2rem;
-  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  padding-bottom: 2rem;
 }
 
 .legend-item {
@@ -250,6 +252,9 @@ body {
   <div class="week-label" id="weekLabel"></div>
 </div>
 
+
+<div class="calendar" id="calendar"></div>
+
 <div class="stats-bar" id="statsBar"></div>
 
 <div class="legend-bar">
@@ -260,8 +265,6 @@ body {
   <div class="legend-item"><div class="legend-dot" style="background:var(--velo)"></div>Vélo</div>
   <div class="legend-item"><div class="legend-dot" style="background:var(--mobilite)"></div>Mobilité</div>
 </div>
-
-<div class="calendar" id="calendar"></div>
 
 <script>
 const TYPE_COLORS = {
