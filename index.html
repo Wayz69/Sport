@@ -243,6 +243,63 @@ body {
   .calendar { grid-template-columns: 1fr; padding: 1rem; }
   .topbar { padding: 1rem; }
 }
+
+.session.muscu { cursor: pointer; }
+
+.session.muscu .expand-hint {
+  font-size: 0.6rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.session.muscu .expand-hint::after {
+  content: '▾';
+  transition: transform 0.2s;
+}
+
+.session.muscu.open .expand-hint::after {
+  transform: rotate(180deg);
+}
+
+.exercises-list {
+  display: none;
+  margin-top: 0.6rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.6rem;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.session.muscu.open .exercises-list {
+  display: flex;
+}
+
+.exercise-item {}
+
+.exercise-name {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.exercise-muscles {
+  font-size: 0.65rem;
+  color: var(--muscu);
+  margin-bottom: 3px;
+}
+
+.exercise-tip {
+  font-size: 0.65rem;
+  color: var(--muted2);
+  line-height: 1.5;
+  font-style: italic;
+}
 </style>
 </head>
 <body>
@@ -287,38 +344,52 @@ const WEEK_START = '2026-06-01'; // Lundi de la semaine
 const PLAN = [
   // LUNDI
   [
-    { type:'muscu', title:'Force + bas du corps léger', detail:'Bench press · Rowing barre · OHP 4×6\nHip thrust 3×12 · Leg press 3×12', duration:'1h00' },
-    { type:'swim',  title:'Endurance force', detail:"400m échauff + 4×(200m pull + 200m plaques) départ 4' + 200m cool", duration:'45min', volume:'~2000m' },
-    { type:'mobilite', title:'Mobilité hanches & tibias', detail:'Rotations hanches · Leg swings · Mobilité cheville · Étirements tibias doux', duration:'15min' }
+    { type:"muscu", title:"Force + bas du corps leger", detail:"4x6 lourd · 3x12 bas du corps", duration:"1h00", exercises: [
+      { name:"Bench Press", sets:"4x6", muscles:"Pectoraux · Triceps · Deltoïdes antérieurs", tip:"Omoplates serrées, pieds au sol, barre descend jusqu'à la poitrine, pousse vers le plafond." },
+      { name:"Rowing Barre", sets:"4x6", muscles:"Grand dorsal · Rhomboïdes · Biceps", tip:"Dos plat, buste penché ~45°, tire la barre vers le nombril, coudes près du corps." },
+      { name:"Overhead Press", sets:"4x6", muscles:"Deltoïdes · Trapèzes · Triceps", tip:"Gainage serré, barre part du menton, pousse à la verticale, tête passe devant à la fin." },
+      { name:"Hip Thrust", sets:"3x12", muscles:"Fessiers · Ischio-jambiers", tip:"Épaules sur le banc, barre sur les hanches, monte le bassin à l'horizontale, serre les fessiers en haut." },
+      { name:"Leg Press", sets:"3x12", muscles:"Quadriceps · Fessiers · Mollets", tip:"Pieds à largeur d'épaules, descend jusqu'à 90°, ne verrouille pas les genoux en haut." }
+    ]},
+    { type:"swim", title:"Endurance force", detail:"Échauff varié + 6x(150m pull / 100m nage libre) départ 4'30 + cool", duration:"45min", volume:"~2000m" },
+    { type:"mobilite", title:"Mobilité hanches & tibias", detail:"Rotations hanches · Leg swings · Mobilité cheville · Étirements tibias doux", duration:"15min" }
   ],
   // MARDI
   [
-    { type:'run',   title:"Run Spé Mat'", detail:"5' marche + 8×(4' RPE 4-5 / 30\" marche) + 5' marche", duration:'45min', volume:'~7.5km' },
-    { type:'cardio',title:'SkiErg intervalles', detail:'5×4min allure soutenue / 2min récup', duration:'40min' },
-    { type:'mobilite', title:'Mobilité épaules', detail:'Rotations épaules · Thoracique · Étirements pectoraux', duration:'20min' }
+    { type:"run", title:"Run Spé Mat'", detail:"5' marche + 8x(4' RPE 4-5 / 30\" marche) + 5' marche", duration:"45min", volume:"~7.5km" },
+    { type:"cardio", title:"SkiErg intervalles", detail:"5x4min allure soutenue / 2min récup", duration:"40min" },
+    { type:"mobilite", title:"Mobilité épaules", detail:"Rotations épaules · Thoracique · Étirements pectoraux", duration:"20min" }
   ],
   // MERCREDI
   [
-    { type:'swim',  title:'Vitesse', detail:"300m échauff + 3×100m BN + 6×50m sprint départ 1'30\" + 8×100m en 1'30\" départ 2' + 200m cool", duration:'50min', volume:'~2500m' },
-    { type:'velo',  title:'Vélo récup', detail:'Foncier très cool <130W', duration:'30min' }
+    { type:"swim", title:"Vitesse", detail:"300m échauff + 3x100m BN + 6x50m sprint départ 1'30 + 8x100m en 1'30 départ 2' + 200m cool", duration:"50min", volume:"~2500m" },
+    { type:"velo", title:"Vélo récup", detail:"Foncier très cool <130W", duration:"30min" }
   ],
   // JEUDI
   [
-    { type:'run',   title:"Run Spé Mat'", detail:"5' marche + 8×(4' RPE 4-5 / 30\" marche) + 5' marche", duration:'45min', volume:'~7.5km' },
-    { type:'muscu', title:'Force haut + bas léger', detail:'Pull-ups · Dips · Curl · Triceps\nIschio machine 3×12 · Leg press 3×12', duration:'1h00' },
-    { type:'cardio',title:'Rameur', detail:'3×2000m / récup 3min', duration:'45min' }
+    { type:"run", title:"Run Spé Mat'", detail:"5' marche + 8x(4' RPE 4-5 / 30\" marche) + 5' marche", duration:"45min", volume:"~7.5km" },
+    { type:"muscu", title:"Force haut + bas léger", detail:"4x6 haut du corps · 3x12 bas du corps", duration:"1h00", exercises: [
+      { name:"Pull-ups", sets:"4x6", muscles:"Grand dorsal · Biceps · Rhomboïdes", tip:"Prise pronation, part de l'extension complète, menton au-dessus de la barre, descend lentement." },
+      { name:"Dips", sets:"4x6", muscles:"Triceps · Pectoraux inférieurs · Deltoïdes", tip:"Corps légèrement penché avant, descend jusqu'à 90° coudes, pousse sans verrouiller." },
+      { name:"Curl Biceps", sets:"4x6", muscles:"Biceps · Brachial", tip:"Coudes fixes contre le corps, monte lentement, descend sur 3 secondes." },
+      { name:"Extension Triceps", sets:"4x6", muscles:"Triceps long · Triceps latéral", tip:"Poulie haute ou haltère, coudes fixes, extension complète, contrôle la descente." },
+      { name:"Ischio Machine", sets:"3x12", muscles:"Ischio-jambiers · Mollets", tip:"Cheville bien calée, flexion complète, retour lent et contrôlé." },
+      { name:"Leg Press", sets:"3x12", muscles:"Quadriceps · Fessiers", tip:"Pieds à largeur d'épaules, descend jusqu'à 90°, ne verrouille pas les genoux." }
+    ]},
+    { type:"cardio", title:"Rameur", detail:"3x2000m / récup 3min", duration:"45min" }
   ],
-  // VENDREDI — Puy du Fou
+  // VENDREDI
   [
-    { type:'mobilite', title:'Mobilité full body', detail:'Yoga flow léger · Étirements globaux · Idéal après une journée de marche', duration:'20min' }
+    { type:"mobilite", title:"Mobilité full body", detail:"Yoga flow léger · Étirements globaux · Idéal après une journée de marche", duration:"20min" }
   ],
-  // SAMEDI — Repos
+  // SAMEDI
   [
-    { type:'mobilite', title:'Activation pré-course', detail:'Rotations hanches · Leg swings · 5min footing léger · 4× accélérations progressives', duration:'20min' }
+    { type:"mobilite", title:"Activation pré-course", detail:"Rotations hanches · Leg swings · 5min footing léger · 4x accélérations progressives", duration:"20min" }
   ],
-  // DIMANCHE — Race
+  // DIMANCHE
   []
 ];
+
 
 // Compétitions sur certains jours (index 0=lundi ... 6=dimanche)
 const RACES = {
@@ -406,16 +477,40 @@ function render() {
     sessions.forEach(s => {
       const color = TYPE_COLORS[s.type] || 'var(--muted2)';
       const label = TYPE_LABELS[s.type] || s.type;
-      col.innerHTML +=
-        '<div class="session" style="--c:'+color+'">'+
-          '<div class="session-type">'+label+'</div>'+
-          '<div class="session-title">'+s.title+'</div>'+
-          (s.detail ? '<div class="session-detail">'+s.detail.replace(/\n/g,'<br>')+'</div>' : '')+
-          '<div class="session-meta">'+
-            (s.duration ? '<span class="session-tag">⏱ '+s.duration+'</span>' : '')+
-            (s.volume   ? '<span class="session-tag">📏 '+s.volume+'</span>' : '')+
-          '</div>'+
-        '</div>';
+      const isMuscu = s.type === 'muscu';
+
+      let exercisesHtml = '';
+      if (isMuscu && s.exercises) {
+        exercisesHtml = '<div class="exercises-list">';
+        s.exercises.forEach(ex => {
+          exercisesHtml +=
+            '<div class="exercise-item">'+
+              '<div class="exercise-name">'+ex.name+' <span style="font-weight:300;color:var(--muted2)">— '+ex.sets+'</span></div>'+
+              '<div class="exercise-muscles">'+ex.muscles+'</div>'+
+              '<div class="exercise-tip">'+ex.tip+'</div>'+
+            '</div>';
+        });
+        exercisesHtml += '</div>';
+      }
+
+      const div = document.createElement('div');
+      div.className = 'session' + (isMuscu ? ' muscu' : '');
+      div.style.setProperty('--c', color);
+      div.innerHTML =
+        '<div class="session-type">'+label+'</div>'+
+        '<div class="session-title">'+s.title+'</div>'+
+        (s.detail ? '<div class="session-detail">'+s.detail.replace(/\n/g,'<br>').replace(/ \+ /g,'<br>')+'</div>' : '')+
+        '<div class="session-meta">'+
+          (s.duration ? '<span class="session-tag">⏱ '+s.duration+'</span>' : '')+
+          (s.volume   ? '<span class="session-tag">📏 '+s.volume+'</span>' : '')+
+        '</div>'+
+        (isMuscu && s.exercises ? '<div class="expand-hint">Voir les exercices</div>'+exercisesHtml : '');
+
+      if (isMuscu && s.exercises) {
+        div.addEventListener('click', () => div.classList.toggle('open'));
+      }
+
+      col.appendChild(div);
     });
 
     cal.appendChild(col);
