@@ -4,28 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MW Training</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0d0e10;
-  --surface: #131416;
-  --surface2: #1a1b1e;
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.12);
-  --text: #ede9e3;
-  --muted: #5a5855;
-  --muted2: #888480;
+  --bg: #1c1e22;
+  --surface: #25272c;
+  --surface2: #2e3035;
+  --border: rgba(255,255,255,0.10);
+  --border2: rgba(255,255,255,0.18);
+  --text: #f0ede8;
+  --muted: #7a7774;
+  --muted2: #a8a4a0;
   --accent: #e8c547;
   --run: #4fc3a1;
   --swim: #5b9bd5;
   --muscu: #e06c4a;
   --cardio: #9b79d4;
   --velo: #7ab8a0;
-  --repos: #2a2a2c;
-  --race: #e8c547;
   --mobilite: #b0a090;
+  --race: #e8c547;
 }
 
 body {
@@ -35,17 +34,15 @@ body {
   min-height: 100vh;
 }
 
-/* ── HEADER ── */
 .topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.2rem 2rem;
   border-bottom: 1px solid var(--border);
+  background: rgba(28,30,34,0.97);
   position: sticky;
   top: 0;
-  background: rgba(13,14,16,0.95);
-  backdrop-filter: blur(8px);
   z-index: 100;
 }
 
@@ -53,368 +50,51 @@ body {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.4rem;
   letter-spacing: 0.12em;
-  color: var(--text);
 }
-
 .logo span { color: var(--accent); }
 
-.week-nav {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
 .week-label {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--muted2);
-  min-width: 160px;
-  text-align: center;
 }
 
-.nav-btn {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  color: var(--muted2);
-  width: 32px;
-  height: 32px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s;
-}
-
-.nav-btn:hover {
-  border-color: var(--border2);
-  color: var(--text);
-}
-
-.add-btn {
-  background: var(--accent);
-  color: #000;
-  border: none;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
-  padding: 0 1rem;
-  height: 32px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: opacity 0.15s;
-}
-
-.add-btn:hover { opacity: 0.85; }
-
-/* ── STATS BAR ── */
 .stats-bar {
   display: flex;
-  gap: 0;
   border-bottom: 1px solid var(--border);
   padding: 0 2rem;
   overflow-x: auto;
 }
 
 .stat-item {
-  padding: 0.8rem 1.5rem;
+  padding: 0.9rem 1.8rem;
   border-right: 1px solid var(--border);
   flex-shrink: 0;
 }
-
 .stat-item:first-child { padding-left: 0; }
 
 .stat-val {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   letter-spacing: 0.06em;
   color: var(--accent);
   line-height: 1;
 }
 
 .stat-lbl {
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-/* ── CALENDAR GRID ── */
-.calendar {
-  padding: 1.5rem 2rem;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-}
-
-.day-col { display: flex; flex-direction: column; gap: 8px; }
-
-.day-head {
-  padding: 0.5rem 0;
-  border-bottom: 2px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.day-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
-  color: var(--muted2);
-}
-
-.day-date {
-  font-size: 0.72rem;
-  color: var(--muted);
-}
-
-.day-col.is-today .day-name { color: var(--accent); }
-.day-col.is-today .day-head { border-bottom-color: var(--accent); }
-.day-col.is-race .day-head { border-bottom-color: var(--race); }
-
-/* ── SESSION CARDS ── */
-.session {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--c, var(--muted));
-  border-radius: 0 5px 5px 0;
-  padding: 0.8rem 0.9rem;
-  transition: transform 0.12s, border-color 0.12s;
-  cursor: pointer;
-  position: relative;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.session:hover { transform: translateY(-2px); border-right-color: var(--border2); }
-
-.session-type {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--c, var(--muted));
-  margin-bottom: 0.3rem;
-  font-weight: 500;
-}
-
-.session-title {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text);
-  line-height: 1.3;
-  margin-bottom: 0.4rem;
-}
-
-.session-detail {
-  font-size: 0.78rem;
-  color: var(--muted2);
-  line-height: 1.6;
-}
-
-.session-meta {
-  display: flex;
-  gap: 6px;
-  margin-top: 0.4rem;
-  flex-wrap: wrap;
-}
-
-.session-tag {
-  font-size: 0.7rem;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 2px 6px;
-  color: var(--muted2);
-}
-
-.delete-btn {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  background: none;
-  border: none;
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 0.65rem;
-  opacity: 0;
-  transition: opacity 0.15s;
-  padding: 2px 4px;
-}
-
-.session:hover .delete-btn { opacity: 1; }
-.delete-btn:hover { color: #e06c4a; }
-
-/* ── EMPTY + REPOS ── */
-.empty-slot {
-  border: 1px dashed var(--border);
-  border-radius: 5px;
-  padding: 1.2rem 0.6rem;
-  text-align: center;
-  cursor: pointer;
-  transition: border-color 0.15s;
-  color: var(--muted);
-  font-size: 0.65rem;
-  opacity: 0.4;
-}
-
-.empty-slot:hover { border-color: var(--accent); opacity: 0.7; color: var(--accent); }
-
-.repos-slot {
-  border: 1px dashed var(--border);
-  border-radius: 5px;
-  padding: 1.5rem 0.6rem;
-  text-align: center;
-  color: var(--muted);
-  opacity: 0.3;
   font-size: 0.62rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-top: 3px;
 }
 
-.race-slot {
-  background: rgba(232,197,71,0.08);
-  border: 1px solid rgba(232,197,71,0.25);
-  border-radius: 5px;
-  padding: 1.2rem 0.6rem;
-  text-align: center;
-}
-
-.race-slot .race-icon { font-size: 1.4rem; margin-bottom: 0.3rem; }
-.race-slot .race-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1rem;
-  color: var(--accent);
-  letter-spacing: 0.06em;
-  margin-bottom: 0.2rem;
-}
-.race-slot .race-info { font-size: 0.62rem; color: var(--accent); opacity: 0.6; line-height: 1.6; }
-
-/* ── MODAL ── */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 200;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
-}
-
-.modal-overlay.open { opacity: 1; pointer-events: all; }
-
-.modal {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 10px;
-  padding: 1.5rem;
-  width: 420px;
-  max-width: 95vw;
-  transform: translateY(8px);
-  transition: transform 0.2s;
-}
-
-.modal-overlay.open .modal { transform: translateY(0); }
-
-.modal h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem;
-  letter-spacing: 0.1em;
-  margin-bottom: 1.2rem;
-  color: var(--text);
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.form-row.full { grid-template-columns: 1fr; }
-
-.form-group { display: flex; flex-direction: column; gap: 4px; }
-
-label {
-  font-size: 0.62rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--muted2);
-}
-
-input, select, textarea {
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  border-radius: 5px;
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.8rem;
-  padding: 0.5rem 0.7rem;
-  transition: border-color 0.15s;
-  outline: none;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: var(--accent);
-}
-
-textarea { resize: vertical; min-height: 70px; }
-
-select option { background: var(--surface2); }
-
-.modal-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 1.2rem;
-  justify-content: flex-end;
-}
-
-.btn-cancel {
-  background: none;
-  border: 1px solid var(--border2);
-  color: var(--muted2);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.78rem;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-
-.btn-cancel:hover { color: var(--text); border-color: var(--border2); }
-
-.btn-save {
-  background: var(--accent);
-  border: none;
-  color: #000;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  padding: 0.5rem 1.4rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: opacity 0.15s;
-}
-
-.btn-save:hover { opacity: 0.85; }
-
-/* ── LEGEND ── */
 .legend-bar {
-  padding: 0.8rem 2rem;
   display: flex;
   gap: 1.2rem;
   flex-wrap: wrap;
+  padding: 0.8rem 2rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -429,16 +109,137 @@ select option { background: var(--surface2); }
 }
 
 .legend-dot {
-  width: 8px;
-  height: 8px;
+  width: 8px; height: 8px;
   border-radius: 2px;
   flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
+.calendar {
+  padding: 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.day-col { display: flex; flex-direction: column; gap: 8px; }
+
+.day-head {
+  padding: 0.5rem 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 2px;
+}
+
+.day-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  color: var(--muted2);
+}
+
+.day-date {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.day-col.is-today .day-name { color: var(--accent); }
+.day-col.is-today .day-head { border-bottom-color: var(--accent); }
+.day-col.is-race .day-head { border-bottom-color: var(--race); }
+
+.session {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--c, var(--muted));
+  border-radius: 0 5px 5px 0;
+  padding: 0.8rem 0.9rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(4px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+.session-type {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--c, var(--muted));
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.session-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 0.35rem;
+}
+
+.session-detail {
+  font-size: 0.75rem;
+  color: var(--muted2);
+  line-height: 1.6;
+}
+
+.session-meta {
+  display: flex;
+  gap: 6px;
+  margin-top: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.session-tag {
+  font-size: 0.68rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 2px 6px;
+  color: var(--muted2);
+}
+
+.race-slot {
+  background: rgba(232,197,71,0.08);
+  border: 1px solid rgba(232,197,71,0.25);
+  border-radius: 5px;
+  padding: 1.5rem 0.8rem;
+  text-align: center;
+}
+
+.race-slot .race-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+.race-slot .race-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.3rem;
+}
+.race-slot .race-info {
+  font-size: 0.68rem;
+  color: var(--accent);
+  opacity: 0.7;
+  line-height: 1.7;
+}
+
+.empty-day {
+  border: 1px dashed var(--border);
+  border-radius: 5px;
+  padding: 2rem 0.8rem;
+  text-align: center;
+  font-size: 0.65rem;
+  color: var(--muted);
+  opacity: 0.3;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 900px) {
+  .calendar { grid-template-columns: repeat(4,1fr); }
+}
+@media (max-width: 600px) {
   .calendar { grid-template-columns: 1fr; padding: 1rem; }
   .topbar { padding: 1rem; }
-  .stats-bar { padding: 0 1rem; }
 }
 </style>
 </head>
@@ -446,12 +247,7 @@ select option { background: var(--surface2); }
 
 <div class="topbar">
   <div class="logo">MW <span>Training</span></div>
-  <div class="week-nav">
-    <button class="nav-btn" onclick="changeWeek(-1)">‹</button>
-    <div class="week-label" id="weekLabel"></div>
-    <button class="nav-btn" onclick="changeWeek(1)">›</button>
-  </div>
-  <button class="add-btn" onclick="openModal()">+ Séance</button>
+  <div class="week-label" id="weekLabel"></div>
 </div>
 
 <div class="stats-bar" id="statsBar"></div>
@@ -462,367 +258,167 @@ select option { background: var(--surface2); }
   <div class="legend-item"><div class="legend-dot" style="background:var(--muscu)"></div>Muscu</div>
   <div class="legend-item"><div class="legend-dot" style="background:var(--cardio)"></div>Cardio</div>
   <div class="legend-item"><div class="legend-dot" style="background:var(--velo)"></div>Vélo</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#b0a090"></div>Mobilité</div>
-  <div class="legend-item"><div class="legend-dot" style="background:var(--muted)"></div>Autre</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--mobilite)"></div>Mobilité</div>
 </div>
 
 <div class="calendar" id="calendar"></div>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
-  <div class="modal">
-    <h2>Ajouter une séance</h2>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Jour</label>
-        <select id="fDay">
-          <option value="0">Lundi</option>
-          <option value="1">Mardi</option>
-          <option value="2">Mercredi</option>
-          <option value="3">Jeudi</option>
-          <option value="4">Vendredi</option>
-          <option value="5">Samedi</option>
-          <option value="6">Dimanche</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Type</label>
-        <select id="fType">
-          <option value="run">Course</option>
-          <option value="swim">Natation</option>
-          <option value="muscu">Muscu</option>
-          <option value="cardio">Cardio</option>
-          <option value="velo">Vélo</option>
-          <option value="repos">Repos</option>
-          <option value="mobilite">Mobilité</option>
-          <option value="other">Autre</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-row full">
-      <div class="form-group">
-        <label>Titre</label>
-        <input type="text" id="fTitle" placeholder="ex: Run Spé Mat'">
-      </div>
-    </div>
-    <div class="form-row full">
-      <div class="form-group">
-        <label>Détail / description</label>
-        <textarea id="fDetail" placeholder="ex: 5' marche + 8×(4' RPE4-5 / 30&quot; marche) + 5' marche"></textarea>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Durée</label>
-        <input type="text" id="fDuration" placeholder="ex: 45min">
-      </div>
-      <div class="form-group">
-        <label>Volume</label>
-        <input type="text" id="fVolume" placeholder="ex: ~7.5km / 2000m">
-      </div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">Annuler</button>
-      <button class="btn-save" onclick="saveSession()">Ajouter</button>
-    </div>
-  </div>
-</div>
-
 <script>
 const TYPE_COLORS = {
-  run: 'var(--run)',
-  swim: 'var(--swim)',
-  muscu: 'var(--muscu)',
-  cardio: 'var(--cardio)',
-  velo: 'var(--velo)',
-  repos: 'var(--muted)',
-  other: 'var(--muted2)',
-  mobilite: '#b0a090',
-  race: 'var(--race)',
+  run:'var(--run)', swim:'var(--swim)', muscu:'var(--muscu)',
+  cardio:'var(--cardio)', velo:'var(--velo)', mobilite:'var(--mobilite)',
+  race:'var(--race)', other:'var(--muted2)'
 };
 
 const TYPE_LABELS = {
-  run: 'Course', swim: 'Natation', muscu: 'Muscu',
-  cardio: 'Cardio', velo: 'Vélo', repos: 'Repos', mobilite: 'Mobilité', other: 'Autre', race: 'Compétition'
+  run:'Course', swim:'Natation', muscu:'Muscu', cardio:'Cardio',
+  velo:'Vélo', mobilite:'Mobilité', race:'Compétition', other:'Autre'
 };
 
 const DAY_NAMES = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
 
-// Data store keyed by "YYYY-WW" (year + ISO week)
-let store = JSON.parse(localStorage.getItem('mw_training') || '{}');
+// ── PLAN DE LA SEMAINE ──────────────────────────────────────────
+// Modifier ici chaque semaine
+const WEEK_START = '2026-06-01'; // Lundi de la semaine
 
-// Events (compétitions) keyed by date string YYYY-MM-DD
-let events = JSON.parse(localStorage.getItem('mw_events') || '{}');
+const PLAN = [
+  // LUNDI
+  [
+    { type:'muscu', title:'Force + bas du corps léger', detail:'Bench press · Rowing barre · OHP 4×6\nHip thrust 3×12 · Leg press 3×12', duration:'1h00' },
+    { type:'swim',  title:'Endurance force', detail:"400m échauff + 4×(200m pull + 200m plaques) départ 4' + 200m cool", duration:'45min', volume:'~2000m' },
+    { type:'mobilite', title:'Mobilité hanches & tibias', detail:'Rotations hanches · Leg swings · Mobilité cheville · Étirements tibias doux', duration:'15min' }
+  ],
+  // MARDI
+  [
+    { type:'run',   title:"Run Spé Mat'", detail:"5' marche + 8×(4' RPE 4-5 / 30\" marche) + 5' marche", duration:'45min', volume:'~7.5km' },
+    { type:'cardio',title:'SkiErg intervalles', detail:'5×4min allure soutenue / 2min récup', duration:'40min' },
+    { type:'mobilite', title:'Mobilité épaules', detail:'Rotations épaules · Thoracique · Étirements pectoraux', duration:'20min' }
+  ],
+  // MERCREDI
+  [
+    { type:'swim',  title:'Vitesse', detail:"300m échauff + 3×100m BN + 6×50m sprint départ 1'30\" + 8×100m en 1'30\" départ 2' + 200m cool", duration:'50min', volume:'~2500m' },
+    { type:'velo',  title:'Vélo récup', detail:'Foncier très cool <130W', duration:'30min' }
+  ],
+  // JEUDI
+  [
+    { type:'run',   title:"Run Spé Mat'", detail:"5' marche + 8×(4' RPE 4-5 / 30\" marche) + 5' marche", duration:'45min', volume:'~7.5km' },
+    { type:'muscu', title:'Force haut + bas léger', detail:'Pull-ups · Dips · Curl · Triceps\nIschio machine 3×12 · Leg press 3×12', duration:'1h00' },
+    { type:'cardio',title:'Rameur', detail:'3×2000m / récup 3min', duration:'45min' }
+  ],
+  // VENDREDI — Puy du Fou
+  [
+    { type:'mobilite', title:'Mobilité full body', detail:'Yoga flow léger · Étirements globaux · Idéal après une journée de marche', duration:'20min' }
+  ],
+  // SAMEDI — Repos
+  [
+    { type:'mobilite', title:'Activation pré-course', detail:'Rotations hanches · Leg swings · 5min footing léger · 4× accélérations progressives', duration:'20min' }
+  ],
+  // DIMANCHE — Race
+  []
+];
 
-// Current week offset from today
-let weekOffset = 0;
+// Compétitions sur certains jours (index 0=lundi ... 6=dimanche)
+const RACES = {
+  6: { name:'10K Adidas', info:'Objectif 45–47 min\nÉchauff 10min + accélérations' }
+};
 
-function getMonday(offset = 0) {
-  const now = new Date();
-  const day = now.getDay() || 7;
-  const monday = new Date(now);
-  monday.setDate(now.getDate() - day + 1 + offset * 7);
-  monday.setHours(0,0,0,0);
-  return monday;
+// ────────────────────────────────────────────────────────────────
+
+function parseDurationToMin(str) {
+  if (!str) return 0;
+  let t = 0;
+  const h = str.match(/(\d+\.?\d*)\s*h/); if (h) t += parseFloat(h[1]) * 60;
+  const m = str.match(/(\d+\.?\d*)\s*min/); if (m) t += parseFloat(m[1]);
+  return t;
 }
 
-function weekKey(monday) {
-  const y = monday.getFullYear();
-  const start = new Date(y, 0, 1);
-  const week = Math.ceil(((monday - start) / 86400000 + start.getDay() + 1) / 7);
-  return `${y}-W${String(week).padStart(2,'0')}`;
+function fmtTime(m) {
+  if (!m) return '—';
+  return m >= 60
+    ? Math.floor(m/60) + 'h' + (m%60 > 0 ? String(Math.round(m%60)).padStart(2,'0') : '')
+    : Math.round(m) + 'min';
 }
 
 function formatDate(d) {
-  return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
-}
-
-function dateStr(d) {
-  return d.toISOString().slice(0,10);
-}
-
-function changeWeek(dir) {
-  weekOffset += dir;
-  render();
+  return d.toLocaleDateString('fr-FR', { day:'numeric', month:'short' });
 }
 
 function render() {
-  const monday = getMonday(weekOffset);
+  const monday = new Date(WEEK_START + 'T00:00:00');
   const sunday = new Date(monday); sunday.setDate(monday.getDate() + 6);
-  const wk = weekKey(monday);
 
   document.getElementById('weekLabel').textContent =
-    `${formatDate(monday)} — ${formatDate(sunday)}`;
+    formatDate(monday) + ' — ' + formatDate(sunday);
 
-  const sessions = store[wk] || [[], [], [], [], [], [], []];
+  const today = new Date(); today.setHours(0,0,0,0);
 
   // Stats
-  renderStats(sessions);
+  let totalMin=0, runKm=0, swimKm=0, veloMin=0, cardioMin=0, muscu=0, runMin=0, swimMin=0, total=0;
+  PLAN.forEach(day => day.forEach(s => {
+    total++;
+    const min = parseDurationToMin(s.duration);
+    const vol = s.volume || '';
+    const km = parseFloat(vol);
+    totalMin += min;
+    if (s.type==='run')    { runMin+=min; if(vol.includes('km')) runKm+=km; }
+    if (s.type==='swim')   { swimMin+=min; if(vol.includes('km')) swimKm+=km; else if(vol.includes('m')) swimKm+=km/1000; }
+    if (s.type==='velo')   veloMin+=min;
+    if (s.type==='cardio') cardioMin+=min;
+    if (s.type==='muscu')  muscu++;
+  }));
 
-  // Event bar
-  renderEvents(monday);
+  const bar = document.getElementById('statsBar');
+  bar.innerHTML =
+    '<div class="stat-item"><div class="stat-val">'+total+'</div><div class="stat-lbl">Séances</div></div>'+
+    '<div class="stat-item"><div class="stat-val">'+fmtTime(totalMin)+'</div><div class="stat-lbl">Temps total</div></div>'+
+    (runKm>0 ? '<div class="stat-item"><div class="stat-val">'+runKm.toFixed(1)+'km</div><div class="stat-lbl">Course · '+fmtTime(runMin)+'</div></div>' : '')+
+    (swimKm>0 ? '<div class="stat-item"><div class="stat-val">'+swimKm.toFixed(1)+'km</div><div class="stat-lbl">Nage · '+fmtTime(swimMin)+'</div></div>' : '')+
+    (veloMin>0 ? '<div class="stat-item"><div class="stat-val">'+fmtTime(veloMin)+'</div><div class="stat-lbl">Vélo</div></div>' : '')+
+    (cardioMin>0 ? '<div class="stat-item"><div class="stat-val">'+fmtTime(cardioMin)+'</div><div class="stat-lbl">Cardio</div></div>' : '')+
+    (muscu>0 ? '<div class="stat-item"><div class="stat-val">'+muscu+'</div><div class="stat-lbl">Séances muscu</div></div>' : '');
 
   // Calendar
   const cal = document.getElementById('calendar');
   cal.innerHTML = '';
 
-  const todayStr = dateStr(new Date());
-
   DAY_NAMES.forEach((name, i) => {
-    const dayDate = new Date(monday); dayDate.setDate(monday.getDate() + i);
-    const dStr = dateStr(dayDate);
-    const isToday = dStr === todayStr;
-    const dayEvents = events[dStr] || [];
-    const isRace = dayEvents.some(e => e.isRace);
+    const d = new Date(monday); d.setDate(monday.getDate() + i);
+    const isToday = d.getTime() === today.getTime();
+    const race = RACES[i];
+    const sessions = PLAN[i] || [];
 
     const col = document.createElement('div');
-    col.className = 'day-col' + (isToday ? ' is-today' : '') + (isRace ? ' is-race' : '');
+    col.className = 'day-col' + (isToday ? ' is-today' : '') + (race ? ' is-race' : '');
 
-    const head = document.createElement('div');
-    head.className = 'day-head';
-    head.innerHTML = `<div class="day-name">${name}</div><div class="day-date">${formatDate(dayDate)}</div>`;
-    col.appendChild(head);
+    col.innerHTML = '<div class="day-head"><div class="day-name">'+name+'</div><div class="day-date">'+formatDate(d)+'</div></div>';
 
-    // Race events for this day
-    dayEvents.filter(e => e.isRace).forEach(ev => {
-      const slot = document.createElement('div');
-      slot.className = 'race-slot';
-      slot.innerHTML = `<div class="race-icon">🏁</div><div class="race-name">${ev.name}</div><div class="race-info">${ev.info || ''}</div>`;
-      col.appendChild(slot);
-    });
-
-    // Sessions
-    const daySessions = sessions[i] || [];
-    daySessions.forEach((s, si) => {
-      const card = document.createElement('div');
-      card.className = 'session';
-      card.style.setProperty('--c', TYPE_COLORS[s.type] || 'var(--muted)');
-      card.innerHTML = `
-        <button class="delete-btn" onclick="deleteSession('${wk}',${i},${si})">✕</button>
-        <div class="session-type">${TYPE_LABELS[s.type] || s.type}</div>
-        <div class="session-title">${s.title}</div>
-        ${s.detail ? `<div class="session-detail">${s.detail}</div>` : ''}
-        <div class="session-meta">
-          ${s.duration ? `<span class="session-tag">⏱ ${s.duration}</span>` : ''}
-          ${s.volume ? `<span class="session-tag">📏 ${s.volume}</span>` : ''}
-        </div>
-      `;
-      col.appendChild(card);
-    });
-
-    // Add slot
-    if (daySessions.length === 0 && !isRace) {
-      const empty = document.createElement('div');
-      empty.className = 'empty-slot';
-      empty.textContent = '+ séance';
-      empty.onclick = () => openModal(i);
-      col.appendChild(empty);
-    } else {
-      const empty = document.createElement('div');
-      empty.className = 'empty-slot';
-      empty.textContent = '+';
-      empty.onclick = () => openModal(i);
-      col.appendChild(empty);
+    if (race) {
+      col.innerHTML += '<div class="race-slot"><div class="race-icon">🏁</div><div class="race-name">'+race.name+'</div><div class="race-info">'+race.info.replace(/\n/g,'<br>')+'</div></div>';
     }
+
+    if (sessions.length === 0 && !race) {
+      col.innerHTML += '<div class="empty-day">Repos</div>';
+    }
+
+    sessions.forEach(s => {
+      const color = TYPE_COLORS[s.type] || 'var(--muted2)';
+      const label = TYPE_LABELS[s.type] || s.type;
+      col.innerHTML +=
+        '<div class="session" style="--c:'+color+'">'+
+          '<div class="session-type">'+label+'</div>'+
+          '<div class="session-title">'+s.title+'</div>'+
+          (s.detail ? '<div class="session-detail">'+s.detail.replace(/\n/g,'<br>')+'</div>' : '')+
+          '<div class="session-meta">'+
+            (s.duration ? '<span class="session-tag">⏱ '+s.duration+'</span>' : '')+
+            (s.volume   ? '<span class="session-tag">📏 '+s.volume+'</span>' : '')+
+          '</div>'+
+        '</div>';
+    });
 
     cal.appendChild(col);
   });
 }
 
-function parseDurationToMin(str) {
-  if (!str) return 0;
-  let total = 0;
-  const h = str.match(/(\d+\.?\d*)\s*h/); if (h) total += parseFloat(h[1]) * 60;
-  const m = str.match(/(\d+\.?\d*)\s*min/); if (m) total += parseFloat(m[1]);
-  if (!h && !m) total += parseFloat(str) || 0;
-  return total;
-}
-
-function renderStats(sessions) {
-  let totalMin = 0, runKm = 0, swimKm = 0, veloMin = 0, muscu = 0, cardioMin = 0, total = 0, runMin = 0, swimMin = 0;
-  sessions.forEach(day => (day || []).forEach(s => {
-    total++;
-    const vol = s.volume || '';
-    const km = parseFloat(vol);
-    const min = parseDurationToMin(s.duration);
-    totalMin += min;
-    if (s.type === 'run') { runMin += min; if (vol.includes('km')) runKm += km; }
-    if (s.type === 'swim') { swimMin += min; if (vol.includes('km')) swimKm += km; else if (vol.includes('m')) swimKm += km / 1000; }
-    if (s.type === 'velo') veloMin += min;
-    if (s.type === 'muscu') muscu++;
-    if (s.type === 'mobilite') totalMin += min;
-    if (s.type === 'cardio') cardioMin += min;
-  }));
-
-  const fmtTime = m => m >= 60 ? m%60 > 0 ? Math.floor(m/60)+"h"+String(Math.round(m%60)).padStart(2,"0") : Math.floor(m/60)+"h" : Math.round(m)+"min";
-
-  const bar = document.getElementById('statsBar');
-  bar.innerHTML =
-    "<div class=\"stat-item\"><div class=\"stat-val\">" + total + "</div><div class=\"stat-lbl\">Séances</div></div>" +
-    "<div class=\"stat-item\"><div class=\"stat-val\">" + fmtTime(totalMin) + "</div><div class=\"stat-lbl\">Temps total</div></div>" +
-    (runKm > 0 ? "<div class=\"stat-item\"><div class=\"stat-val\">" + runKm.toFixed(1) + "km</div><div class=\"stat-lbl\">Course · " + fmtTime(runMin) + "</div></div>" : "") +
-    (swimKm > 0 ? "<div class=\"stat-item\"><div class=\"stat-val\">" + swimKm.toFixed(1) + "km</div><div class=\"stat-lbl\">Nage · " + fmtTime(swimMin) + "</div></div>" : "") +
-    (veloMin > 0 ? "<div class=\"stat-item\"><div class=\"stat-val\">" + fmtTime(veloMin) + "</div><div class=\"stat-lbl\">Vélo</div></div>" : "") +
-    (cardioMin > 0 ? "<div class=\"stat-item\"><div class=\"stat-val\">" + fmtTime(cardioMin) + "</div><div class=\"stat-lbl\">Cardio</div></div>" : "") +
-    (muscu > 0 ? "<div class=\"stat-item\"><div class=\"stat-val\">" + muscu + "</div><div class=\"stat-lbl\">Séances muscu</div></div>" : "");
-}
-
-function renderEvents(monday) {
-  // Events visibles directement sur le planning
-}
-
-// Modal
-let modalDayPreset = null;
-
-function openModal(dayIndex = null) {
-  modalDayPreset = dayIndex;
-  if (dayIndex !== null) document.getElementById('fDay').value = dayIndex;
-  document.getElementById('modalOverlay').classList.add('open');
-  document.getElementById('fTitle').focus();
-}
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.getElementById('fTitle').value = '';
-  document.getElementById('fDetail').value = '';
-  document.getElementById('fDuration').value = '';
-  document.getElementById('fVolume').value = '';
-}
-
-function closeModalOutside(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
-
-function saveSession() {
-  const monday = getMonday(weekOffset);
-  const wk = weekKey(monday);
-  const day = parseInt(document.getElementById('fDay').value);
-  const type = document.getElementById('fType').value;
-  const title = document.getElementById('fTitle').value.trim();
-  const detail = document.getElementById('fDetail').value.trim();
-  const duration = document.getElementById('fDuration').value.trim();
-  const volume = document.getElementById('fVolume').value.trim();
-
-  if (!title) { document.getElementById('fTitle').focus(); return; }
-
-  if (!store[wk]) store[wk] = [[], [], [], [], [], [], []];
-  store[wk][day].push({ type, title, detail, duration, volume });
-  localStorage.setItem('mw_training', JSON.stringify(store));
-  closeModal();
-  render();
-}
-
-function deleteSession(wk, day, si) {
-  if (!store[wk]) return;
-  store[wk][day].splice(si, 1);
-  localStorage.setItem('mw_training', JSON.stringify(store));
-  render();
-}
-
-// Preload this week's plan
-function preloadWeek() {
-  const monday = getMonday(0);
-  const wk = weekKey(monday);
-  // Force reload version 2
-  const version = 'v2';
-  if (store[wk] && store[wk].some(d => d.length > 0) && localStorage.getItem('mw_version') === version) return;
-  localStorage.setItem('mw_version', version);
-
-  // Semaine 1-7 juin 2026
-  const plan = [
-    // Lundi
-    [
-      { type:'muscu', title:'Force + bas du corps léger', detail:'Bench press · Rowing barre · OHP 4×6\nHip thrust 3×12 · Leg press 3×12', duration:'1h00', volume:'' },
-      { type:'swim', title:'Endurance force', detail:'400m échauff + 4×(200m pull + 200m plaques) départ 4\' + 200m cool', duration:'45min', volume:'~2000m' },
-      { type:'mobilite', title:'Mobilité hanches & tibias', detail:'Rotations hanches · Leg swings · Mobilité cheville · Étirements tibias doux', duration:'15min', volume:'' }
-    ],
-    // Mardi
-    [
-      { type:'run', title:'Run Spé Mat\'', detail:'5\' marche + 8×(4\' RPE 4-5 / 30" marche) + 5\' marche', duration:'45min', volume:'~7.5km' },
-      { type:'cardio', title:'SkiErg intervalles', detail:'5×4min allure soutenue / 2min récup', duration:'40min', volume:'' },
-      { type:'mobilite', title:'Mobilité épaules', detail:'Rotations épaules · Thoracique · Étirements pectoraux', duration:'20min', volume:'' }
-    ],
-    // Mercredi 
-    [
-      { type:'swim', title:'Vitesse', detail:'300m échauff + 3×100m BN + 6×50m sprint départ 1\'30" + 8×100m en 1\'30" départ 2\' + 200m cool', duration:'50min', volume:'~2500m' },
-      { type:'velo', title:'Vélo récup', detail:'Foncier très cool <130W', duration:'30min', volume:'' }
-    ],
-    // Jeudi
-    [
-      { type:'run', title:'Run Spé Mat\'', detail:'5\' marche + 8×(4\' RPE 4-5 / 30" marche) + 5\' marche', duration:'45min', volume:'~7.5km' },
-      { type:'muscu', title:'Force haut + bas léger', detail:'Pull-ups · Dips · Curl · Triceps\nIschio machine 3×12 · Leg press 3×12', duration:'1h00', volume:'' },
-      { type:'cardio', title:'Rameur', detail:'3×2000m / récup 3min', duration:'45min', volume:'' }
-    ],
-    // Vendredi — Puy du Fou
-    [
-      { type:'mobilite', title:'Mobilité full body', detail:'Yoga flow léger · Étirements globaux · Idéal après une journée de marche', duration:'20min', volume:'' }
-    ],
-    // Samedi — Repos complet
-    [
-      { type:'mobilite', title:'Activation pré-course', detail:'Rotations hanches · Leg swings · 5min footing léger · 4x accélérations progressives', duration:'20min', volume:'' }
-    ],
-    // Dimanche — Race
-    []
-  ];
-
-  store[wk] = plan;
-  localStorage.setItem('mw_training', JSON.stringify(store));
-
-  // Race event dimanche
-  const sunday = new Date(monday); sunday.setDate(monday.getDate() + 6);
-  const dStr = dateStr(sunday);
-  events[dStr] = [{ isRace: true, name: '10K Adidas', info: 'Objectif 45–47 min · Échauff 10min' }];
-  localStorage.setItem('mw_events', JSON.stringify(events));
-}
-
-// Keyboard shortcut
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal();
-  if (e.key === 'ArrowLeft' && !document.getElementById('modalOverlay').classList.contains('open')) changeWeek(-1);
-  if (e.key === 'ArrowRight' && !document.getElementById('modalOverlay').classList.contains('open')) changeWeek(1);
-});
-
-preloadWeek();
 render();
 </script>
 </body>
