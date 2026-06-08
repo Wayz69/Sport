@@ -279,6 +279,7 @@ body {
   display: flex;
 }
 
+
 .exercise-name {
   font-size: 0.78rem;
   font-weight: 500;
@@ -350,7 +351,7 @@ const PLAN = [
       { name:"Romanian Deadlift", sets:"3x10", muscles:"Ischio-jambiers - Fessiers - Bas du dos", tip:"Barre glisse le long des jambes, pousse les hanches en arrière, dos plat." },
       { name:"Élévation mollets", sets:"4x15", muscles:"Mollets - Soléaire", tip:"Amplitude complète, monte sur la pointe, descend lentement sous le talon." }
     ]},
-    { type:"swim", title:"Pyramide", detail:"400m échauff + 100m - 200m - 300m - 400m - 300m - 200m - 100m (récup 20sec entre chaque) + 200m cool", duration:"55min", volume:"~2500m" },
+    { type:"swim", title:"Pyramide force", detail:"300m échauff tuba + 100m nage libre + 200m plaquettes + 300m plaquettes + 400m plaquettes + 300m plaquettes + 200m plaquettes + 100m nage libre (récup 20sec entre chaque) + 200m cool planche jambes", duration:"50min", volume:"~2100m" },
     { type:"mobilite", title:"Mobilité hanches & tibias", detail:"Rotations hanches - Leg swings - Mobilité cheville - Étirements tibias doux", duration:"15min" }
   ],
   // MARDI
@@ -369,20 +370,19 @@ const PLAN = [
       { name:"Leg Press", sets:"3x12", muscles:"Quadriceps - Fessiers", tip:"Pieds à largeur d'épaules, descend jusqu'à 90°, ne verrouille pas les genoux." },
       { name:"Élévation mollets machine", sets:"4x15", muscles:"Mollets - Soléaire", tip:"Amplitude complète, descend lentement pour étirer le mollet." }
     ]},
-    { type:"swim", title:"Seuil", detail:"300m échauff + 3x400m en 5min45 départ 7min + 200m pull récup + 4x100m en 1min25 départ 1min50 + 200m cool", duration:"55min", volume:"~2500m" }
+    { type:"swim", title:"Seuil palmes", detail:"300m échauff + 6x50m palmes (récup 25m dos entre chaque) + 50m récup dos + 3x400m plaquettes (récup 100m nage libre) + 200m cool pull buoy", duration:"55min", volume:"~2500m" }
   ],
   // JEUDI
   [
-    { type:"run", title:"Run progression", detail:"5min marche + 6x(6min RPE 4-5 / 30sec marche) + 5min marche", duration:"55min", volume:"~9km" },
     { type:"cardio", title:"Circuit Hyrox B", detail:"4 tours - Rameur 250m + Sled push 20m + Sled pull 20m + 20 Sandbag lunges - Récup 2min entre tours", duration:"45min" },
     { type:"mobilite", title:"Mobilité full body", detail:"GOWOD ou yoga flow - Accent bas du corps et hanches", duration:"20min" }
   ],
-  // VENDREDI
+  // VENDREDI — dans le sud
   [
-    { type:"velo", title:"Vélo endurance Z2", detail:"Foncier Z2 - FC 138-154bpm - Cadence 85-90rpm", duration:"1h30", volume:"~45km" },
-    { type:"swim", title:"Technique dissociée", detail:"300m échauff + 8x50m (25m bras droit / 25m bras gauche) + 6x150m en 2min15 départ 3min (focus roulis) + 4x100m pull en 1min35 départ 2min + 200m cool", duration:"55min", volume:"~2400m" }
+    { type:"run", title:"Run progression", detail:"5min marche + 6x(6min RPE 4-5 / 30sec marche) + 5min marche", duration:"55min", volume:"~9km" },
+    { type:"swim", title:"Technique tuba + dissociée", detail:"200m échauff + 6x50m tuba (focus position corps / pas de bras) + 8x50m (25m bras droit / 25m bras gauche) + 6x150m en 2min15 départ 3min plaquettes nage complète + 4x100m élastique pull buoy + 200m cool planche", duration:"55min", volume:"~2400m" }
   ],
-  // SAMEDI
+  // SAMEDI — dans le sud
   [
     { type:"muscu", title:"Hyrox force endurance", detail:"Focus charges Hyrox", duration:"1h00", exercises: [
       { name:"Deadlift", sets:"4x5", muscles:"Ischio-jambiers - Fessiers - Bas du dos - Trapèzes", tip:"Barre au-dessus des lacets, dos plat, pousse le sol, barre glisse contre les jambes, verrouille les hanches en haut." },
@@ -391,17 +391,17 @@ const PLAN = [
       { name:"Farmers Carry lourd", sets:"4x40m", muscles:"Trapèzes - Core - Avant-bras - Fessiers", tip:"Charges lourdes, dos droit, pas courts et rapides, regard devant." },
       { name:"Élévation mollets", sets:"4x15", muscles:"Mollets - Soléaire", tip:"Amplitude complète, descend lentement sous le talon." }
     ]},
-    { type:"run", title:"Run progression", detail:"5min marche + 6x(6min RPE 4-5 / 30sec marche) + 5min marche", duration:"55min", volume:"~9km" }
+    { type:"mobilite", title:"Mobilité récup", detail:"Étirements globaux - Foam roller jambes - Focus tibias et mollets", duration:"20min" }
   ],
-  // DIMANCHE
+  // DIMANCHE — dans le sud
   [
-    { type:"velo", title:"Vélo récup active", detail:"Foncier très cool - FC moins de 130bpm", duration:"45min" },
-    { type:"swim", title:"Récup", detail:"400m échauff + 6x(100m pull / 100m dos) départ 3min30 + 200m cool", duration:"45min", volume:"~1700m" },
+    { type:"run", title:"Run progression", detail:"5min marche + 6x(6min RPE 4-5 / 30sec marche) + 5min marche", duration:"55min", volume:"~9km" },
     { type:"mobilite", title:"Mobilité récup", detail:"Étirements globaux - Foam roller jambes - Focus tibias et mollets", duration:"20min" }
   ]
 ];
 
 const RACES = {};
+
 
 
 
