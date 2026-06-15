@@ -279,6 +279,7 @@ body {
   display: flex;
 }
 
+.exercise-item {}
 
 .exercise-name {
   font-size: 0.78rem;
@@ -338,69 +339,73 @@ const DAY_NAMES = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Diman
 
 // ── PLAN DE LA SEMAINE ──────────────────────────────────────────
 // Modifier ici chaque semaine
-const WEEK_START = "2026-06-08";
+const WEEK_START = "2026-06-15";
 
 const PLAN = [
   // LUNDI
   [
-    { type:"muscu", title:"Force haut du corps + bas lourd", detail:"4x6 lourd - 3x12 bas du corps", duration:"1h00", exercises: [
+    { type:"muscu", title:"Pecs + épaules + triceps", detail:"4x6 lourd - 3x10-15 accessoires", duration:"1h00", exercises: [
       { name:"Bench Press", sets:"4x6", muscles:"Pectoraux - Triceps - Deltoïdes antérieurs", tip:"Omoplates serrées, pieds au sol, barre descend jusqu'à la poitrine, pousse vers le plafond." },
-      { name:"Rowing Barre", sets:"4x6", muscles:"Grand dorsal - Rhomboïdes - Biceps", tip:"Dos plat, buste penché 45°, tire la barre vers le nombril, coudes près du corps." },
+      { name:"Incline Dumbbell Press", sets:"3x10", muscles:"Pectoraux hauts - Deltoïdes antérieurs", tip:"Banc à 30-45°, haltères alignés épaules, descend lentement, pousse en arc vers le haut." },
       { name:"Overhead Press", sets:"4x6", muscles:"Deltoïdes - Trapèzes - Triceps", tip:"Gainage serré, barre part du menton, pousse à la verticale, tête passe devant à la fin." },
-      { name:"Squat", sets:"4x6", muscles:"Quadriceps - Fessiers - Ischio-jambiers", tip:"Pieds à largeur d'épaules, descend jusqu'à parallèle, genoux dans l'axe des orteils, dos droit." },
-      { name:"Romanian Deadlift", sets:"3x10", muscles:"Ischio-jambiers - Fessiers - Bas du dos", tip:"Barre glisse le long des jambes, pousse les hanches en arrière, dos plat." },
-      { name:"Élévation mollets", sets:"4x15", muscles:"Mollets - Soléaire", tip:"Amplitude complète, monte sur la pointe, descend lentement sous le talon." }
+      { name:"Lateral Raises", sets:"3x15", muscles:"Deltoïdes latéraux", tip:"Légère flexion coude, monte jusqu'à l'horizontale, descend lentement, pas d'élan." },
+      { name:"Dips", sets:"3x12", muscles:"Triceps - Pectoraux inférieurs", tip:"Corps légèrement penché avant, descend jusqu'à 90° coudes, pousse sans verrouiller." },
+      { name:"Triceps Pressdown", sets:"3x12", muscles:"Triceps long - Triceps latéral", tip:"Coudes fixes contre le corps, extension complète, contrôle la remontée." }
     ]},
-    { type:"swim", title:"Pyramide force", detail:"300m échauff tuba + 100m nage libre + 200m plaquettes + 300m plaquettes + 400m plaquettes + 300m plaquettes + 200m plaquettes + 100m nage libre (récup 20sec entre chaque) + 200m cool planche jambes", duration:"50min", volume:"~2100m" },
+    { type:"swim", title:"Endurance pull", detail:"300m échauff + 4x200m pull buoy (récup 50m planche) + 400m NL continu + 4x100m élastique (récup 30sec au mur) + 200m cool", duration:"55min", volume:"~2500m" },
     { type:"mobilite", title:"Mobilité hanches & tibias", detail:"Rotations hanches - Leg swings - Mobilité cheville - Étirements tibias doux", duration:"15min" }
   ],
   // MARDI
   [
-    { type:"run", title:"Run progression", detail:"5min marche + 6x(6min RPE 4-5 / 30sec marche) + 5min marche", duration:"55min", volume:"~9km" },
-    { type:"cardio", title:"Circuit Hyrox A", detail:"4 tours - SkiErg 250m + 20 Wall balls + 20m Farmers carry + 10 Burpee broad jump - Récup 2min entre tours", duration:"45min" },
+    { type:"run", title:"Run progression", detail:"5min marche + 6x(8min RPE 4-5 / 30sec marche) + 5min marche", duration:"1h05", volume:"~10km" },
+    { type:"cardio", title:"Hyrox AMRAP 20min", detail:"Max de tours en 20min - SkiErg 250m + 15 Wall balls + 10 Burpee broad jump + 30m Sandbag lunges - Note ton score de tours", duration:"35min" },
     { type:"mobilite", title:"Mobilité épaules", detail:"Rotations épaules - Thoracique - Étirements pectoraux", duration:"15min" }
   ],
   // MERCREDI
   [
-    { type:"muscu", title:"Force tirage + accessoires", detail:"4x6 tirage - 3x12 accessoires", duration:"1h00", exercises: [
+    { type:"muscu", title:"Dos + biceps", detail:"4x6 lourd - 3x12 accessoires", duration:"1h00", exercises: [
       { name:"Pull-ups", sets:"4x6", muscles:"Grand dorsal - Biceps - Rhomboïdes", tip:"Prise pronation, part de l'extension complète, menton au-dessus de la barre, descend lentement." },
-      { name:"Dips", sets:"4x6", muscles:"Triceps - Pectoraux inférieurs - Deltoïdes", tip:"Corps légèrement penché avant, descend jusqu'à 90° coudes, pousse sans verrouiller." },
-      { name:"Curl Biceps Barre", sets:"4x8", muscles:"Biceps - Brachial", tip:"Coudes fixes contre le corps, monte lentement, descend sur 3 secondes." },
-      { name:"Extension Triceps Poulie", sets:"4x8", muscles:"Triceps long - Triceps latéral", tip:"Coudes fixes, extension complète, contrôle la descente." },
-      { name:"Leg Press", sets:"3x12", muscles:"Quadriceps - Fessiers", tip:"Pieds à largeur d'épaules, descend jusqu'à 90°, ne verrouille pas les genoux." },
-      { name:"Élévation mollets machine", sets:"4x15", muscles:"Mollets - Soléaire", tip:"Amplitude complète, descend lentement pour étirer le mollet." }
+      { name:"Rowing Barre", sets:"4x6", muscles:"Grand dorsal - Rhomboïdes - Biceps", tip:"Dos plat, buste penché 45°, tire la barre vers le nombril, coudes près du corps." },
+      { name:"Seated Cable Row", sets:"3x12", muscles:"Rhomboïdes - Grand dorsal - Trapèzes moyens", tip:"Dos droit, tire les coudes en arrière, serre les omoplates en fin de mouvement." },
+      { name:"Face Pulls", sets:"3x15", muscles:"Deltoïdes postérieurs - Rhomboïdes - Rotateurs externes", tip:"Poulie haute, tire vers le visage en écartant les coudes, rotation externe en fin de mouvement." },
+      { name:"Curl Barre", sets:"4x8", muscles:"Biceps - Brachial", tip:"Coudes fixes contre le corps, monte lentement, descend sur 3 secondes." },
+      { name:"Hammer Curl", sets:"3x12", muscles:"Biceps - Brachioradial - Avant-bras", tip:"Prise neutre, coudes fixes, contrôle la descente." }
     ]},
-    { type:"swim", title:"Seuil palmes", detail:"300m échauff + 6x50m palmes (récup 25m dos entre chaque) + 50m récup dos + 3x400m plaquettes (récup 100m nage libre) + 200m cool pull buoy", duration:"55min", volume:"~2500m" }
+    { type:"swim", title:"Vitesse courte", detail:"200m échauff + 10x50m NL en 40sec (récup 30sec au mur) + 200m récup dos + 6x100m plaquettes + pull buoy (récup 30sec) + 200m cool", duration:"50min", volume:"~2200m" }
   ],
   // JEUDI
   [
-    { type:"cardio", title:"Circuit Hyrox B", detail:"4 tours - Rameur 250m + Sled push 20m + Sled pull 20m + 20 Sandbag lunges - Récup 2min entre tours", duration:"45min" },
+    { type:"run", title:"Run progression", detail:"5min marche + 6x(8min RPE 4-5 / 30sec marche) + 5min marche", duration:"1h05", volume:"~10km" },
+    { type:"cardio", title:"Hyrox For Time", detail:"4 rounds chrono - Rameur 500m + Sled push 30m + Sled pull 30m + 20m Farmers carry - Note ton temps total", duration:"50min" },
     { type:"mobilite", title:"Mobilité full body", detail:"GOWOD ou yoga flow - Accent bas du corps et hanches", duration:"20min" }
   ],
-  // VENDREDI — dans le sud
+  // VENDREDI
   [
-    { type:"run", title:"Run progression", detail:"5min marche + 6x(6min RPE 4-5 / 30sec marche) + 5min marche", duration:"55min", volume:"~9km" },
-    { type:"swim", title:"Technique tuba + dissociée", detail:"200m échauff + 6x50m tuba (focus position corps / pas de bras) + 8x50m (25m bras droit / 25m bras gauche) + 6x150m en 2min15 départ 3min plaquettes nage complète + 4x100m élastique pull buoy + 200m cool planche", duration:"55min", volume:"~2400m" }
+    { type:"velo", title:"Vélo endurance Z2", detail:"Foncier Z2 - FC 138-154bpm - Cadence 85-90rpm", duration:"1h30", volume:"~45km" },
+    { type:"swim", title:"Endurance dissociée", detail:"400m échauff tuba + 3x300m NL (focus catch, récup 50m NL) + 6x100m (50m bras droit / 50m bras gauche) + 4x150m NL (récup 30sec) + 200m cool planche", duration:"55min", volume:"~2700m" }
   ],
-  // SAMEDI — dans le sud
+  // SAMEDI
   [
-    { type:"muscu", title:"Hyrox force endurance", detail:"Focus charges Hyrox", duration:"1h00", exercises: [
+    { type:"muscu", title:"Jambes + fessiers", detail:"Focus force et Hyrox", duration:"1h00", exercises: [
       { name:"Deadlift", sets:"4x5", muscles:"Ischio-jambiers - Fessiers - Bas du dos - Trapèzes", tip:"Barre au-dessus des lacets, dos plat, pousse le sol, barre glisse contre les jambes, verrouille les hanches en haut." },
+      { name:"Hack Squat", sets:"4x8", muscles:"Quadriceps - Fessiers", tip:"Pieds à largeur d'épaules, descend jusqu'à 90°, genoux dans l'axe des orteils." },
       { name:"Hip Thrust", sets:"4x10", muscles:"Fessiers - Ischio-jambiers", tip:"Épaules sur le banc, barre sur les hanches, monte le bassin à l'horizontale, serre les fessiers en haut." },
-      { name:"Wall Balls lourd", sets:"4x15", muscles:"Fessiers - Quadriceps - Épaules", tip:"Squat complet, explose vers le haut, lance le ballon à 3m, attrape en fléchissant les genoux." },
-      { name:"Farmers Carry lourd", sets:"4x40m", muscles:"Trapèzes - Core - Avant-bras - Fessiers", tip:"Charges lourdes, dos droit, pas courts et rapides, regard devant." },
+      { name:"Leg Curl Machine", sets:"3x12", muscles:"Ischio-jambiers", tip:"Cheville bien calée, flexion complète, retour lent et contrôlé." },
       { name:"Élévation mollets", sets:"4x15", muscles:"Mollets - Soléaire", tip:"Amplitude complète, descend lentement sous le talon." }
     ]},
     { type:"mobilite", title:"Mobilité récup", detail:"Étirements globaux - Foam roller jambes - Focus tibias et mollets", duration:"20min" }
   ],
-  // DIMANCHE — dans le sud
+  // DIMANCHE
   [
-    { type:"run", title:"Run progression", detail:"5min marche + 6x(6min RPE 4-5 / 30sec marche) + 5min marche", duration:"55min", volume:"~9km" },
+    { type:"run", title:"Run progression", detail:"5min marche + 6x(8min RPE 4-5 / 30sec marche) + 5min marche", duration:"1h05", volume:"~10km" },
+    { type:"velo", title:"Vélo récup active", detail:"Foncier très cool - FC moins de 130bpm", duration:"45min" },
     { type:"mobilite", title:"Mobilité récup", detail:"Étirements globaux - Foam roller jambes - Focus tibias et mollets", duration:"20min" }
   ]
 ];
 
 const RACES = {};
+
+
 
 
 
